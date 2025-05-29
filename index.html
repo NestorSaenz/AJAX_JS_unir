@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Laboratorio JS y AJAX</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Laboratorio JS y AJAX</h1>
+
+    <section>
+        <h2>Ejercicio 1: Palíndromo</h2>
+        <label for="palindromoInput">Introduce una cadena:</label>
+        <input type="text" id="palindromoInput" placeholder="Ejemplo: Anita lava la tina">
+        <button onclick="mostrarPalindromo()">Comprobar</button>
+        <div id="palindromoResultado" class="resultado"></div>
+    </section>
+
+    <section>
+        <h2>Ejercicio 2: Mayor de dos números</h2>
+        <label for="num1">Primer número:</label>
+        <input type="number" id="num1" placeholder="Ejemplo: 5">
+        <label for="num2">Segundo número:</label>
+        <input type="number" id="num2" placeholder="Ejemplo: 8">
+        <button onclick="mostrarMayor()">Comparar</button>
+        <div id="mayorResultado" class="resultado"></div>
+    </section>
+
+    <section>
+        <h2>Ejercicio 3: Vocales en una frase</h2>
+        <label for="fraseVocales">Introduce una frase:</label>
+        <input type="text" id="fraseVocales" placeholder="Ejemplo: Hola mundo">
+        <button onclick="mostrarVocales()">Mostrar vocales</button>
+        <div id="vocalesResultado" class="resultado"></div>
+    </section>
+
+    <section>
+        <h2>Ejercicio 4: Contar vocales</h2>
+        <label for="fraseContar">Introduce una frase:</label>
+        <input type="text" id="fraseContar" placeholder="Ejemplo: Esto es una prueba">
+        <button onclick="mostrarConteoVocales()">Contar vocales</button>
+        <div id="conteoVocalesResultado" class="resultado"></div>
+    </section>
+
+    <section>
+        <h2>AJAX</h2>
+        <label for="urlInput">URL a consultar:</label>
+        <input type="text" id="urlInput">
+        <button onclick="mostrarContenidos()">Mostrar Contenidos</button>
+        <div>
+            <strong>Estados de la petición:</strong>
+            <div id="estadoPeticion" class="estado"></div>
+        </div>
+        <div>
+            <strong>Zona de Contenidos:</strong>
+            <div id="zonaContenidos" class="resultado"></div>
+        </div>
+        <div>
+            <strong>Cabeceras HTTP de la respuesta:</strong>
+            <div id="cabecerasHTTP" class="cabeceras"></div>
+        </div>
+        <div>
+            <strong>Código de estado:</strong>
+            <div id="codigoEstado" class="codigo"></div>
+        </div>
+    </section>
+
+    <script src="index.js"></script>
+    <script>
+        // Funciones para conectar los botones con tu JS
+        function mostrarPalindromo() {
+            const input = document.getElementById('palindromoInput').value;
+            const resultado = esPalindromo(input);
+            document.getElementById('palindromoResultado').textContent = resultado === true ? '¡Es un palíndromo!' : resultado === false ? 'No es un palíndromo.' : resultado;
+        }
+        function mostrarMayor() {
+            const n1 = document.getElementById('num1').value;
+            const n2 = document.getElementById('num2').value;
+            document.getElementById('mayorResultado').textContent = mayorDeDos(n1, n2);
+        }
+        function mostrarVocales() {
+            const frase = document.getElementById('fraseVocales').value;
+            document.getElementById('vocalesResultado').textContent = vocalesEnFrase(frase);
+        }
+        function mostrarConteoVocales() {
+            const frase = document.getElementById('fraseContar').value;
+            const conteo = contarVocales(frase);
+            document.getElementById('conteoVocalesResultado').textContent = 
+                Object.entries(conteo).map(([v, c]) => `${v}: ${c}`).join(', ');
+        }
+    </script>
+</body>
+</html>
